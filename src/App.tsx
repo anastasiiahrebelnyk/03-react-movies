@@ -12,14 +12,16 @@ function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  //   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  //   const openModal = () => {
+  //     setIsModalOpen(true);
+  //     selectedMovie();
+  //   };
+  //   const closeModal = () => {
+  //     setIsModalOpen(false);
+  //   };
   // const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
   const handleSearch = async (query: string) => {
@@ -49,8 +51,17 @@ function App() {
       <SearchBar onSubmit={handleSearch} />
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
-      {movies.length > 0 && <MovieGrid movies={movies} onSelect={openModal} />}
-      {isModalOpen && <MovieModal movie={movie.id} onClose={closeModal} />}
+      {movies.length > 0 && (
+        <MovieGrid movies={movies} onSelect={setSelectedMovie} />
+      )}
+      {selectedMovie && (
+        <MovieModal
+          movie={selectedMovie}
+          onClose={() => {
+            setSelectedMovie(null);
+          }}
+        />
+      )}
     </>
   );
 }

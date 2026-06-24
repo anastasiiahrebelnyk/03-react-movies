@@ -1,21 +1,20 @@
-import type { MouseEvent } from 'react';
 import type { Movie } from '../../types/movie';
 import css from './MovieGrid.module.css';
 
 interface MovieGridProps {
-  onSelect: (element: {}) => void;
+  onSelect: (movie: Movie) => void;
   movies: Movie[];
 }
 
 export default function MovieGrid({ movies, onSelect }: MovieGridProps) {
-  const onSelect = element => {};
+  // const onSelect = element => {};
   // console.log(movies);
   return (
     <ul className={css.grid}>
       {/* Набір елементів списку з фільмами */}
       {movies.map(movie => (
         <li key={movie.id}>
-          <div className={css.card} onClick={onSelect}>
+          <div className={css.card} onClick={() => onSelect(movie)}>
             <img
               // onSelect={onSelect}
               className={css.image}
