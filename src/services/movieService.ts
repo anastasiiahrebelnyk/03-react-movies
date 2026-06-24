@@ -4,7 +4,7 @@ import type { Movie } from '../types/movie';
 const API_KEY = import.meta.env.VITE_TMDB_TOKEN;
 
 interface MovieHTTPResponse {
-  hits: Movie[];
+  results: Movie[];
 }
 
 export const fetchMovies = async (query: string) => {
