@@ -1,13 +1,15 @@
 import styles from './SearchBar.module.css';
 
 interface SearchBarProps {
-  onSubmit: (query: string) => void;
+  onSubmit: (query: string) => Promise<void>;
 }
 
 export default function SearchBar({ onSubmit }: SearchBarProps) {
   const handleSubmit = (formData: FormData) => {
-    const query = formData.get('query') as string;
-    onSubmit(query);
+    const query = (formData.get('query') as string).trim();
+    if (query) {
+      onSubmit(query);
+    }
   };
   return (
     <header className={styles.header}>

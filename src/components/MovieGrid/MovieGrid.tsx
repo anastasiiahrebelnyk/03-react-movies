@@ -2,20 +2,20 @@ import type { Movie } from '../../types/movie';
 import css from './MovieGrid.module.css';
 
 interface MovieGridProps {
-  onSelect: () => void;
+  // onSelect: () => void;
   movies: Movie[];
 }
 
-export default function MovieGrid({ onSelect, movies }: MovieGridProps) {
+export default function MovieGrid({ movies }: MovieGridProps) {
   //   const handleClick = () => {};
   return (
     <ul className={css.grid}>
       {/* Набір елементів списку з фільмами */}
       {movies.map(movie => (
-        <li>
+        <li key={movie.id}>
           <div className={css.card}>
             <img
-              onSelect={onSelect}
+              // onSelect={onSelect}
               className={css.image}
               src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               alt={movie.title}
