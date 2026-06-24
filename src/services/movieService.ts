@@ -10,10 +10,10 @@ interface MovieHTTPResponse {
 export const fetchMovies = async (query: string) => {
   const response = await axios.get<MovieHTTPResponse>(
     `https://api.themoviedb.org/3/search/movie?query=${query}&language=en-US&page=1`,
-    // `https://api.themoviedb.org/3/movie/?query=${query}&language=en-US&page=1`,
+    // `https://api.themoviedb.org/3/movie/`,
     {
       params: {
-        // твої параметри
+        // query: query,
       },
       headers: {
         Authorization: `Bearer ${API_KEY}`,
