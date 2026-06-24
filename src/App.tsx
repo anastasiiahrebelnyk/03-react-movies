@@ -5,7 +5,7 @@ import { fetchMovies } from './services/movieService';
 import type { Movie } from './types/movie';
 
 function App() {
-  const [movies, setMovies] = useState<Photo[]>([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -16,13 +16,16 @@ function App() {
       setMovies([]);
       setIsError(false);
       setIsLoading(true);
-      const { data } = await fetchMovies(query);
+      const { results } = await fetchMovies(query);
       if (fetchMovies.length === 0) {
         //
-        console.log(0);
+        console.log('no movies');
       }
-      setMovies(data);
+      console.log(results);
+      setMovies(results);
     } catch (error) {
+      console.log(error);
+
       setIsError(true);
     } finally {
       setIsLoading(false);

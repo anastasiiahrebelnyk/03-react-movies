@@ -9,7 +9,8 @@ interface MovieHTTPResponse {
 
 export const fetchMovies = async (query: string) => {
   const response = await axios.get<MovieHTTPResponse>(
-    'https://api.themoviedb.org/3/movie/11',
+    `https://api.themoviedb.org/3/search/movie?query=${query}&language=en-US&page=1`,
+    // `https://api.themoviedb.org/3/movie/?query=${query}&language=en-US&page=1`,
     {
       params: {
         // твої параметри
@@ -19,5 +20,7 @@ export const fetchMovies = async (query: string) => {
       },
     }
   );
+  // console.log(response.data);
+
   return response.data;
 };

@@ -7,6 +7,8 @@ interface MovieGridProps {
 }
 
 export default function MovieGrid({ movies }: MovieGridProps) {
+  // console.log(movies);
+
   //   const handleClick = () => {};
   return (
     <ul className={css.grid}>
